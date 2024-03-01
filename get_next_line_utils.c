@@ -44,3 +44,27 @@ t_list *ft_lst_last(t_list *stash)
 	}
 	return (stash);
 }
+
+void	create_line(char **line, t_list *stash)
+{
+	int	i;
+	int	len;
+
+	len = 0;
+	while (stash)
+	{
+		i = 0;
+		while (stash->content[i])
+		{
+			if (stash->content[i] = '\n')
+			{
+				len++;
+				break ;
+			}
+			len++;
+			i++;
+		}
+		stash = stash->next;
+	}
+	*line = malloc(sizeof(char) * (len + 1));
+}

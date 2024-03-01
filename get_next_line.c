@@ -30,6 +30,7 @@ char	*get_next_line(int fd)
 	if (stash == NULL)
 		return (NULL);
 	extract_line(stash, &line);
+	clean_stash(&stash);
 	return (line);
 }
 
@@ -101,5 +102,42 @@ void	extract_line(t_list *stash, char **line)
 
 	if(stash == NULL)
 		return ;
+/* fonction qui va créer de la mémoire pour notre string */
+	create_line(line, stash);
+	if (*line == NULL)
+		return ;
+	j = 0;
+/* maintenant que notre string line a assez de mémoire grace au malloc, on vient copier les éléments qui sont dans les listes jusqu'à ce qu'on tombe sur un \n */
+	while (stash)
+	{
+		i = 0;
+		while (stash->content[i])
+		{
+			if (stash->content[i] == '\n')
+			{
+				line[j++] = stash->content[i];
+				break ;
+			}
+			line[j++] = stash->content[i++];
+		}
+		stash = stash->next;
+	}
+}
 
+void	clean_stash()
+{
+	t_list	*last;
+	t_list	*clean_list;
+	int	i;
+	int	j;
+
+	clean_list = malloc(sizeof(t_list));
+	if (stash == NULL || clean_list == NULL)
+		return ;
+	clean_list->next = NULL;
+	last = ft_lst_last(*stash);
+	i = 0;
+	while (last->content[i] && last->content[i] != '\n')
+		i++;
+	clean_list
 }
