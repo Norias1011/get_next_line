@@ -6,7 +6,7 @@
 /*   By: akinzeli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:27:06 by akinzeli          #+#    #+#             */
-/*   Updated: 2024/02/29 16:39:33 by akinzeli         ###   ########.fr       */
+/*   Updated: 2024/03/05 10:27:18 by akinzeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ void	extract_line(t_list *stash, char **line)
 	}
 }
 
+/* après avoir pris les characters dont on avait besoin, on peut les supprimer de la liste et garder ceux qu'on a pas mis de coté */
+
 void	clean_stash()
 {
 	t_list	*last;
@@ -139,5 +141,15 @@ void	clean_stash()
 	i = 0;
 	while (last->content[i] && last->content[i] != '\n')
 		i++;
-	clean_list
+	if (last->content[i] && last->content[i] != '\n')
+		i++;
+	clean_list->content = malloc(sizeof(char) * ((ft_strlen(last->content) - i) + 1));
+	if (clean_list->content == NULL)
+		return ;
+	j = 0;
+	while (last->content[i])
+		clean_list->content[j++] = last->content[i++];
+	clean_list->content[j] = '\0';
+	free_stash(*stash);
+	*stash = clean_list;
 }

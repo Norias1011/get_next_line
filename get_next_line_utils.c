@@ -6,7 +6,7 @@
 /*   By: akinzeli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:00:35 by akinzeli          #+#    #+#             */
-/*   Updated: 2024/02/29 14:29:37 by akinzeli         ###   ########.fr       */
+/*   Updated: 2024/03/05 10:33:33 by akinzeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,29 @@ void	create_line(char **line, t_list *stash)
 		stash = stash->next;
 	}
 	*line = malloc(sizeof(char) * (len + 1));
+}
+
+void	free_stash(t_list *stash)
+{
+	t_list	*current;
+	t_list	*next;
+
+	current = stash;
+	while (current)
+	{
+		free(current->content);
+		next = current->next;
+		free(current);
+		current = next;
+	}
+}
+
+int	ft_strlen(const char *str)
+{
+	int	len;
+
+	len = 0;
+	while (*(str++))
+		len++;
+	return (len);
 }
