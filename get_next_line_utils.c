@@ -6,7 +6,7 @@
 /*   By: akinzeli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:33:30 by akinzeli          #+#    #+#             */
-/*   Updated: 2024/03/05 15:36:56 by akinzeli         ###   ########.fr       */
+/*   Updated: 2024/03/07 11:53:30 by akinzeli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ t_list	*find_last_node(t_list *list)
 	return (list);
 }
 
-/*
- * Copy (string\n]
-*/
 void	copy_str(t_list *list, char *str)
 {
 	int	i;
@@ -70,10 +67,6 @@ void	copy_str(t_list *list, char *str)
 	str[k] = '\0';
 }
 
-/*
- * find the len to new line in
- * my linked list
-*/
 int	len_to_newline(t_list *list)
 {
 	int	i;
@@ -100,10 +93,6 @@ int	len_to_newline(t_list *list)
 	return (len);
 }
 
-/*
- * dealloc all from head
- * set heat->NULL
-*/
 void	dealloc(t_list **list, t_list *clean_node, char *buf)
 {
 	t_list	*tmp;
